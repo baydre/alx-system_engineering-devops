@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# displays the current directory in list format
+file_list=$(ls -1)
+# iterate through each file in the list
+for file in $file_list; do
+	# use 'cut' to extract the part of the name after the 1st dash
+	name_part=$(echo "$file" | cut -d'-' -f2-)
+	# display the modified name
+	echo "$name_part"
+done
