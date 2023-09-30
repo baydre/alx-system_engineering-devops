@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # displays bad luck(china), bad luck(japan) & bad luck(italy)
-i=0
+i=1
 while [ $i -le 20 ]; do
 	case $i in
 	4)
