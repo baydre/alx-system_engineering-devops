@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# displays the content of the file /etc/passwd
+# use cut to extract the username, user ID, & homedir from /etc/passwd
+cut -d: -f 1,3,6 /etc/passwd | while IFS=: read -r username userid homedir; do
+	echo "$username"
+	echo "$userid"
+	echo "$homedir"
+done
