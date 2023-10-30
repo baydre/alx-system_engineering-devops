@@ -1,5 +1,4 @@
 # 0x09. Web infrastructure design
-    By: Sylvain Kalache, co-founder at Holberton School
     Weight: 1
     Project - took place from Oct 26, 2023 6:00 AM to Oct 30, 2023 6:00 AM
 
