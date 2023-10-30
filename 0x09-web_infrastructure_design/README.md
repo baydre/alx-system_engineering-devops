@@ -23,6 +23,6 @@ For this project, the below concepts were studied:
 - LAMP, SPOF, QPS meaning and concepts were understood too.
 
 ## **Tasks**
-- Simple web stack
-- Distributed web infrastructure
-- Secured and monitored web infrastructure.
+- [Simple web stack](https://github.com/baydre/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/concepts/0-simple_web_stack.md)
+- [Distributed web infrastructure](https://github.com/baydre/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/concepts/1-distributed_web_infrastructure.md)
+- [Secured and monitored web infrastructure](https://github.com/baydre/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/concepts/2-secured_and_monitored_web_infrastructure.md).
