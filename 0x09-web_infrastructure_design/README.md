@@ -1,8 +1,5 @@
 # 0x09. Web infrastructure design
-    Weight: 1
-    Project - took place from Oct 26, 2023 6:00 AM to Oct 30, 2023 6:00 AM
-
-#### Concepts
+### Concepts
 For this project, the below concepts were studied:
 
 - DNS
