@@ -17,7 +17,7 @@ In an active-active configuration, both servers are running and responding to re
 **What is the difference between the Primary node and the Replica node in regard to the application?** The primary node in a database cluster is responsible for processing write operations, while replica nodes are responsible for processing read operations. This means that applications that require high write throughput will benefit from using a primary node, while applications that require high read throughput will benefit from using replica nodes.
 
 ## Issues with the Distributed Web Infrastructure Design
-**SPOF Single Point of Failure**. This design has multiple SPOFs (load balancer and main-node database), if load balancer or database from the main node fails, the entire system will fail. SPOFs can be avoided by introducing redundancy in the system, such as backup servers or power supplies.
+**Multiple SPOF Single Point of Failure**. This design has multiple SPOFs (load balancer and main-node database), if load balancer or database from the main node fails, the entire system will fail. SPOFs can be avoided by introducing redundancy in the system, such as backup servers or power supplies.
 
 **Security Concerns (no firewall, no HTTPS)**. This design is exposed to unauthorised access due to lack of firewall in it. Due to absence of HTTPS, sensitive information such as login credentials, credit cards numbers, etc, can be intercepted by third parties.
 
