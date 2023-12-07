@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# script that configure an nginx server to redirect to another page
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
+#redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
+custom_404="\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t\techo 'Ceci n'est pas une page.';\n\t}\n"
+sudo sed -i "24s|.*|$custom_404|" /etc/nginx/sites-enabled/default
+sudo service nginx restart
