@@ -5,10 +5,14 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
 # redirection code config >>>> file 3-redirection for codes
+# 404 page nginx configuration to be added
+ERROR="\\n    error_page 404 /custom_404.html;\\n    location = /custom_404.html {\\n        root /var/www/html;\\n        internal;\\n    }"
+# Add the configuration to the Nginx default site configuration
+sudo sed -i "29s|.*|$ERROR|" /etc/nginx/sites-enabled/default
 sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
-echo "error_page 404 /custom_404.html;" | sudo tee -a /etc/nginx/sites-enabled/default
-echo "location = /custom_404.html {" | sudo tee -a /etc/nginx/sites-enabled/default
-echo "   root /var/www/html;" | sudo tee -a /etc/nginx/sites-enabled/default
-echo "   internal;" | sudo tee -a /etc/nginx/sites-enabled/default
-echo "}" | sudo tee -a /etc/nginx/sites-enabled/default
+echo "error_page 404 /custom_404.html;" | sudo tee -a /etc/nginx/sites-available/default
+echo "location = /custom_404.html {" | sudo tee -a /etc/nginx/sites-available/default
+echo "   root /var/www/html;" | sudo tee -a /etc/nginx/sites-available/default
+echo "   internal;" | sudo tee -a /etc/nginx/sites-available/default
+echo "}" | sudo tee -a /etc/nginx/sites-available/default
 sudo service nginx restart
