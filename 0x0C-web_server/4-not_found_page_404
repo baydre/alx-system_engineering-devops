@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-# script that configure an nginx server to redirect to another page
+# script that configure a nginx server to have a custom 404 page.
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
-#redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
-custom_404="\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t\techo 'Ceci n'est pas une page.';\n\t}\n"
-sudo sed -i "24s|.*|$custom_404|" /etc/nginx/sites-enabled/default
+# redirection code config >>>> file 3-redirection for codes
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+echo "error_page 404 /custom_404.html;" | sudo tee -a /etc/nginx/sites-enabled/default
+echo "location = /custom_404.html {" | sudo tee -a /etc/nginx/sites-enabled/default
+echo "   root /var/www/html;" | sudo tee -a /etc/nginx/sites-enabled/default
+echo "   internal;" | sudo tee -a /etc/nginx/sites-enabled/default
+echo "}" | sudo tee -a /etc/nginx/sites-enabled/default
 sudo service nginx restart

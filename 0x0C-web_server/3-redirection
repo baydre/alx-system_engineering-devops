@@ -5,5 +5,18 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
 redirect="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
-sudo sed -i "38s|.*|$redirect|" /etc/nginx/sites-enabled/default
+sudo sed -i "24s|.*|$redirect|" /etc/nginx/sites-enabled/default
+# Create a configuration file for the redirection
+echo "server {" | sudo tee /etc/nginx/sites-available/redirect_me
+echo "    listen 80;" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "    server_name _;" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "    location /redirect_me {" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "    }" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "}" | sudo tee -a /etc/nginx/sites-available/redirect_me
+
+# Create a symbolic link to enable the site
+sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+
+# Restart Nginx to apply changes
 sudo service nginx restart
