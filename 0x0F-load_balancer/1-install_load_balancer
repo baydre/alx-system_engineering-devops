@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# install and configure HAproxy on a server.
+sudo apt install -y haproxy
+file=/etc/haproxy/haproxy.cfg
+sudo echo -e "frontend haproxynode
+\tbind *:80
+\tmode http
+\tdefault_backend nodes" | sudo tee -a $file
+sudo echo -e "backend nodes
+\tmode http
+\tbalance roundrobin
+\toption forwardfor
+\thttp-request set-header X-Forwarded-Port %[dst_port]
+\tserver 262423-web-01 34.202.233.237:80 check
+\tserver 262423-web-02 100.25.109.68:80 check" | sudo tee -a $file
+sudo service haproxy restart
