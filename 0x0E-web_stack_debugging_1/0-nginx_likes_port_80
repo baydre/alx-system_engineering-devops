@@ -3,4 +3,22 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo apt -y install curl
+CONFIG="
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+
+	root /usr/share/nginx/html;
+	index index.html index.htm;
+
+	# Make site accessible from http://localhost/
+	server_name localhost;
+
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+
+}
+"
+echo "$CONFIG" > /etc/nginx/sites-enabled/default
 sudo service nginx restart
