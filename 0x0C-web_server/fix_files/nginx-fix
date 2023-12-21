@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # script that recreate /etc/nginx/sites-enabled/default
-sudo apt-get purge nginx nginx-common nginx-full
-sudo apt-get install nginx
+sudo apt-get purge -y nginx nginx-common nginx-full
+sudo apt-get -y install nginx
 sudo service nginx reload
