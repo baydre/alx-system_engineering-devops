@@ -1,0 +1,39 @@
+Certainly! Below is an example of a Bash script that configures an Nginx server on a brand new Ubuntu machine to redirect the "/redirect_me" path to another page with a "301 Moved Permanently" status.
+
+```bash
+#!/bin/bash
+
+# Update package list
+sudo apt-get update
+
+# Install Nginx
+sudo apt-get install -y nginx
+
+# Create a configuration file for the redirection
+echo "server {" | sudo tee /etc/nginx/sites-available/redirect_me
+echo "    listen 80;" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "    server_name _;" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "    location /redirect_me {" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "    }" | sudo tee -a /etc/nginx/sites-available/redirect_me
+echo "}" | sudo tee -a /etc/nginx/sites-available/redirect_me
+
+# Create a symbolic link to enable the site
+sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+
+# Remove the default site symlink to avoid conflicts
+sudo rm /etc/nginx/sites-enabled/default
+
+# Restart Nginx to apply changes
+sudo service nginx restart
+```
+
+This script does the following:
+
+1. Installs Nginx.
+2. Creates an Nginx server block configuration for the redirection.
+3. Creates a symbolic link to enable the new site configuration.
+4. Removes the default site symlink to avoid conflicts.
+5. Restarts Nginx to apply the changes.
+
+After running this script, your Nginx server will be configured to redirect requests to "/redirect_me" with a "301 Moved Permanently" status to the specified YouTube URL.
