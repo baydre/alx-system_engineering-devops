@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# script that configure an nginx to run & listen to port 80.
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo apt -y install curl
+sudo service nginx restart
