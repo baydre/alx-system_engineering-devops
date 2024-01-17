@@ -13,7 +13,7 @@ def number_of_subscribers(subreddit):
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {
             'accept': 'application/json',
-            'user-agent':'Mozilla/5.0 (Linux-Ubuntu 20.4; x64)'}
+            'user-agent': 'Mozilla/5.0 (Linux-Ubuntu 20.4; x64)'}
     response = requests.get(url, headers=headers)
 
     # if not a valid subreddit, return 0
