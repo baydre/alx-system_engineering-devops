@@ -8,13 +8,12 @@ import requests
 
 def top_ten(subreddit):
     """
-    returns top-ten
-    posts
+    returns top-ten posts
     """
     url = 'https://www.reddit.com'
     header = {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+        'accept': 'application/json',
+        'user-Agent': 'Mozilla/5.0 (Linux-Ubuntu 20.4; x64)'
     }
     response = requests.get('{}/r/{}/.json?sort={}&limit={}'.format(
         url, subreddit, 'top', 10),
