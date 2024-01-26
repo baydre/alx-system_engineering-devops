@@ -1,15 +1,29 @@
 # configuration for nginx to serve a page from route /airbnb-onepage/
 server {
-    listen      80 default_server;
-    listen      [::]:80 default_server ipv6only=on;
-    server_name 34.202.233.237;
-    add_header  X-Served-By 262423-web-01;
-    location = /airbnb-onepage/ {
-        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
-    }
-    error_page 404 /custom_404.html;
-    location /404 {
-        root /var/www/html;
-        internal;
-    }
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+        add_header X-Served-By 262423-web-01;
+
+        server_name localhost;
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+
+        location /hbnb_static {
+                alias /data/web_static/current/;
+                index index.html;
+        }
+
+        location /airbnb-onepage/ {
+                proxy_pass http://127.0.0.1:5000;
+        }
+        error_page 404 /custom_404.html;
+        location = /custom_404.html {
+                root /var/www/html;
+                internal;
+        }
 }
